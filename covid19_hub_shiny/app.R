@@ -72,7 +72,7 @@ ui <- fluidPage(
 
 
 # Define server logic required to draw a histogram
-server <- function(input, output, session) {
+server <-shinyServer(function(input,output) {
   
   #  App virtualenv setup
   virtualenv_dir = Sys.getenv('VIRTUALENV_NAME')
@@ -246,7 +246,7 @@ server <- function(input, output, session) {
       theme_bw() +
       theme(plot.subtitle  = element_text(color = ifelse(Sys.Date() - forecast_date > 6, "red", "black")))
   },height = set_shiny_plot_height(session, "output_latest_plot_width"))
-}
+})
 
 shinyApp(ui = ui, server = server)
 
