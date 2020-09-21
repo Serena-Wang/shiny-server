@@ -50,29 +50,8 @@ truth = combine_truth(inc_jhu, inc_usa, inc_nyt,
 
 truth_sources = unique(truth$source)
 
-
-ui <- fluidPage(
-  sidebarLayout(
-    sidebarPanel(
-      fileInput("forecast", "Choose Forecast File",multiple = FALSE,accept = c(".csv")),
-      hr(),
-      selectInput("target","Target", choices = 'NA'),
-      shinyWidgets::pickerInput("abbreviation","Location",choices = 'NA', options = list(`actions-box` = TRUE), multiple = TRUE),
-      shinyWidgets::pickerInput("county","County", choices = 'NA', options = list(`actions-box` = TRUE), multiple = TRUE),
-      selectInput("sources","Truth sources", truth_sources, selected = "JHU-CSSE", multiple = TRUE),
-      dateRangeInput("dates","Date range", start = "2020-03-01", end =  Sys.Date())
-      ), 
-    
-    mainPanel(
-      plotOutput("latest_plot")
-    )  
-  )
-)
-
-
-
 # Define server logic required to draw a histogram
-server <-shinyServer(function(input,output) {
+shinyServer(function(input,output) {
   
   #  App virtualenv setup
   virtualenv_dir = Sys.getenv('VIRTUALENV_NAME')
@@ -248,5 +227,5 @@ server <-shinyServer(function(input,output) {
   },height = set_shiny_plot_height(session, "output_latest_plot_width"))
 })
 
-shinyApp(ui = ui, server = server)
+#shinyApp(ui = ui, server = server)
 
