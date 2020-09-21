@@ -17,7 +17,7 @@ Software requirements: python 3 the following packages:
 If you want to try out this new version of the shiny app you can use 
 
     reticulate::use_python(python = "path of your system-level python",required = T) 
-    source("code/shiny/shiny_single_file/app_single_file.R")
+    source("covid19_hub_shiny/app.R")
     shinyApp(ui = ui, server = server) # if it doesn't automatically run
     
 from the base folder of the repository.
