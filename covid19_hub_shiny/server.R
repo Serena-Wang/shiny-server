@@ -60,7 +60,7 @@ shinyServer(function(input,output) {
   
   # Create virtual env and install dependencies
   reticulate::virtualenv_create(envname = virtualenv_dir, python = python_path)
-  reticulate::use_virtualenv(envname = virtualenv_dir)
+  reticulate::use_virtualenv(virtualenv_dir)
   #reticulate::virtualenv_remove(envname = virtualenv_dir, packages = "pip")
   reticulate::virtualenv_install(envname = virtualenv_dir, packages = "pip")
   reticulate::virtualenv_install(virtualenv_dir, packages = PYTHON_DEPENDENCIES)
