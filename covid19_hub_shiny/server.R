@@ -1,4 +1,5 @@
 # app for a single file 
+reticulate::use_python(python = "/usr/bin/python3",required = T)
 library("shiny")
 library("dplyr")
 library("reticulate")
