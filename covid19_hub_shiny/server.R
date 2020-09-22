@@ -23,23 +23,23 @@ PYTHON_DEPENDENCIES = c(
 # Set max upload size to be 30 MB
 options(shiny.maxRequestSize=30*1024^2)
 
-R.utils::sourceDirectory("covid19_hub_shiny/R",modifiedOnly=FALSE)
+R.utils::sourceDirectory("R",modifiedOnly=FALSE)
 
 # Get validation code
 #validation_code = reticulate::import_from_path("test_formatting", path = "validation/")
 
-locations = get_locations(file = "covid19_hub_shiny/data-locations/locations.csv")
+locations = get_locations(file = "data-locations/locations.csv")
 
 # Collect truth files
-inc_jhu = get_truth(file = "covid19_hub_shiny/data-truth/truth-Incident Deaths.csv",                     "inc", "JHU-CSSE")
-cum_jhu = get_truth(file = "covid19_hub_shiny/data-truth/truth-Cumulative Deaths.csv",                   "cum", "JHU-CSSE")
-inc_usa = get_truth(file ="covid19_hub_shiny/data-truth/usafacts/truth_usafacts-Incident Deaths.csv",   "inc", "USAFacts")
-cum_usa = get_truth(file = "covid19_hub_shiny/data-truth/usafacts/truth_usafacts-Cumulative Deaths.csv", "cum", "USAFacts")
-inc_nyt = get_truth(file = "covid19_hub_shiny/data-truth/nytimes/truth_nytimes-Incident Deaths.csv",     "inc", "NYTimes")
-cum_nyt = get_truth(file = "covid19_hub_shiny/data-truth/nytimes/truth_nytimes-Cumulative Deaths.csv",   "cum", "NYTimes")
-inc_cases_nyt = get_truth(file = "covid19_hub_shiny/data-truth/nytimes/truth_nytimes-Incident Cases.csv",     "inc", "NYTimes")
-inc_cases_usa = get_truth(file = "covid19_hub_shiny/data-truth/usafacts/truth_usafacts-Incident Cases.csv",   "inc", "USAFacts")
-inc_cases_jhu = get_truth(file = "covid19_hub_shiny/data-truth/truth-Incident Cases.csv",   "inc", "JHU-CSSE")
+inc_jhu = get_truth(file = "data-truth/truth-Incident Deaths.csv",                     "inc", "JHU-CSSE")
+cum_jhu = get_truth(file = "data-truth/truth-Cumulative Deaths.csv",                   "cum", "JHU-CSSE")
+inc_usa = get_truth(file ="data-truth/usafacts/truth_usafacts-Incident Deaths.csv",   "inc", "USAFacts")
+cum_usa = get_truth(file = "data-truth/usafacts/truth_usafacts-Cumulative Deaths.csv", "cum", "USAFacts")
+inc_nyt = get_truth(file = "data-truth/nytimes/truth_nytimes-Incident Deaths.csv",     "inc", "NYTimes")
+cum_nyt = get_truth(file = "data-truth/nytimes/truth_nytimes-Cumulative Deaths.csv",   "cum", "NYTimes")
+inc_cases_nyt = get_truth(file = "data-truth/nytimes/truth_nytimes-Incident Cases.csv",     "inc", "NYTimes")
+inc_cases_usa = get_truth(file = "data-truth/usafacts/truth_usafacts-Incident Cases.csv",   "inc", "USAFacts")
+inc_cases_jhu = get_truth(file = "data-truth/truth-Incident Cases.csv",   "inc", "JHU-CSSE")
 
 truth = combine_truth(inc_jhu, inc_usa, inc_nyt,
                       cum_jhu, cum_usa, cum_nyt,
@@ -63,7 +63,7 @@ shinyServer(function(input,output) {
   reticulate::use_virtualenv(virtualenv_dir, required = T)
   
   # Get validation code
-  validation_code = reticulate::import_from_path("test_formatting", path = "covid19_hub_shiny/validation/")
+  validation_code = reticulate::import_from_path("test_formatting", path = "validation/")
   
   
   
