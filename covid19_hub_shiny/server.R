@@ -6,7 +6,7 @@ library("reticulate")
 library("shinyWidgets")
 
 # Define any Python packages needed for the app
-PYTHON_DEPENDENCIES = c("pip",
+PYTHON_DEPENDENCIES = c(
                         "pandas",
                         "requests",
                         "pymmwr",
