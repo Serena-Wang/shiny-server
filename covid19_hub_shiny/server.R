@@ -6,7 +6,7 @@ library("reticulate")
 library("shinyWidgets")
 
 # Define any Python packages needed for the app
-PYTHON_DEPENDENCIES = c(
+PYTHON_DEPENDENCIES = c("pip==19.0.3",
                         "pandas",
                         "requests",
                         "pymmwr",
@@ -60,6 +60,7 @@ shinyServer(function(input,output) {
   
   # Create virtual env and install dependencies
   reticulate::virtualenv_create(envname = virtualenv_dir, python = python_path)
+  reticulate::virtualenv_remove(envname = virtualenv_dir, packages = "pip")
   reticulate::virtualenv_install(virtualenv_dir, packages = PYTHON_DEPENDENCIES)
   reticulate::use_virtualenv(virtualenv_dir, required = T)
   
