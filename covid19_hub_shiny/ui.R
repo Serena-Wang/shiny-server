@@ -9,7 +9,7 @@ shinyUI(fluidPage(
         selectInput("target","Target", choices = 'NA'),
         shinyWidgets::pickerInput("abbreviation","Location",choices = 'NA', options = list(`actions-box` = TRUE), multiple = TRUE),
         shinyWidgets::pickerInput("county","County", choices = 'NA', options = list(`actions-box` = TRUE), multiple = TRUE),
-        selectInput("sources","Truth sources", truth_sources, selected = "JHU-CSSE", multiple = TRUE),
+        selectInput("sources","Truth sources", c("JHU-CSSE","USAFacts","NYTimes"), selected = "JHU-CSSE", multiple = TRUE),
         dateRangeInput("dates","Date range", start = "2020-03-01", end =  Sys.Date())
       ), 
       
